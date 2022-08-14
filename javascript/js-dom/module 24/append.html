@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>section add</title>
+  </head>
+  <body>
+    <mani id="main"> </mani>
+    <script>
+      const allBody = document.getElementById("main");
+      const sections = document.createElement("div");
+      sections.innerHTML = `
+        <h1>this is my first js section</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab voluptatem et alias veritatis quidem dolore voluptatum natus eaque ipsa similique?</p>
+        <ul>
+          <li>hello 1</li>
+          <li>hello 2</li>
+          <li>hello 3</li>
+          <li>hello 4</li>
+          </ul>
+        `;
+      allBody.appendChild(sections);
+      sections.style.padding = "25px";
+      sections.style.background = "#ddd";
+      sections.style.border = "3px solid #5486";
+      sections.style.borderRadius = "25px";
+      sections.childNodes[1].style.color = "#ac2125";
+      sections.childNodes[1].style.textTransform = "uppercase";
+    </script>
+  </body>
+</html>

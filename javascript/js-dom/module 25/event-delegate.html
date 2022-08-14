@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event delegate</title>
+  </head>
+  <body>
+    <h1>Delegate click to parent</h1>
+    <section>
+      <ul id="item-container">
+        <li class="item">Lorem, ipsum dolor.</li>
+        <li class="item">Vel, error impedit?</li>
+        <li class="item">Aliquam, animi qui.</li>
+        <li class="item">Odio, vel aspernatur.</li>
+        <li class="item">Maxime, aperiam rerum.</li>
+      </ul>
+      <br />
+      <button id="btn-add">Add Item</button>
+    </section>
+    <script>
+      document
+        .getElementById("item-container")
+        .addEventListener("click", function (event) {
+          event.target.parentNode.removeChild(event.target);
+        });
+
+      document.getElementById("btn-add").addEventListener("click", function () {
+        const allItem = document.getElementById("item-container");
+        const li = document.createElement("li");
+        li.innerText = "New Item Added";
+        li.classList.add("item");
+        allItem.appendChild(li);
+      });
+    </script>
+  </body>
+</html>

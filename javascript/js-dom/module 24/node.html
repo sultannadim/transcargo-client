@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>node</title>
+  </head>
+  <body>
+    <section id="hello">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos,
+        mollitia!
+      </p>
+      <h1>Lorem ipsum dolor sit amet.</h1>
+      <ul>
+        <li>Lorem ipsum dolor sit amet 1</li>
+        <li>Lorem ipsum dolor sit amet 2</li>
+        <li>Lorem ipsum dolor sit amet 3</li>
+        <li>Lorem ipsum dolor sit amet 4</li>
+        <li>Lorem ipsum dolor sit amet 5</li>
+      </ul>
+    </section>
+
+    <script>
+      const section = document.querySelector("section");
+      console.log(section.childNodes[3].innerText);
+      console.log(section.childNodes[5].childNodes[3].innerText);
+      console.log(section.childNodes[5].childNodes[3].nextSibling);
+
+      const uls = document.querySelector("#hello ul");
+      const li = document.createElement("li");
+      li.innerText = "jak obosese ekta element dukalam";
+      uls.appendChild(li);
+
+      //   parent ke khojar jono
+      uls.parentNode;
+    </script>
+  </body>
+</html>
