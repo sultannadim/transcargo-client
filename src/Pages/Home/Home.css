@@ -9,11 +9,26 @@
     
     color: #fff;
 }
+.all-company{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 40px;
+}
 
 /*Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) { 
     .banner{
         min-height: 350px;
+    }
+    .all-company{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        
+        gap: 10px;
+        
+    }
+    .all-company img{
+        width: 80%;
     }
  }
 
@@ -21,6 +36,16 @@
 @media (min-width: 576px) and (max-width: 767.98px) { 
     .banner{
         min-height: 350px;
+    }
+    .all-company{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        
+        gap: 20px;
+        
+    }
+    .all-company img{
+        width: 80%;
     }
  }
 
