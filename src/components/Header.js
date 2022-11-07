@@ -18,7 +18,7 @@ const Header = () => {
           className="shadow-none bg-light"
         />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className="ms-auto d-lg-flex align-items-center">
             <Link
               className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
               to="/"
@@ -31,15 +31,19 @@ const Header = () => {
             >
               Add Service
             </Link>
-            <Link
-              className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
-              to="/"
-            >
+            <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
               Log Out
+            </Link>
+            <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
+              <img
+                src="https://static.toiimg.com/photo/msid-89908674/89908674.jpg"
+                alt="profile"
+                className="profile"
+              />
             </Link>
             <Link
               className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
-              to="/"
+              to="/login"
             >
               Login
             </Link>
