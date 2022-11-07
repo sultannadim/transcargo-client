@@ -20,6 +20,10 @@
   display: flex;
   align-items: center;
 }
+#basic-navbar-nav a{
+  text-transform: capitalize;
+
+}
 
 
 /*Extra small devices (portrait phones, less than 576px)*/

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { AuthContext } from "../context/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   return (
-    <Navbar bg="dark" expand="lg">
+    <Navbar bg="dark" expand="lg" className="border-bottom">
       <Container>
         <Link to="/" className="my-nav text-decoration-none">
           <img src={logo} alt="logo" className="logo" />
@@ -30,6 +32,9 @@ const Header = () => {
               to="/"
             >
               Add Service
+            </Link>
+            <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
+              {user.name}
             </Link>
             <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
               Log Out

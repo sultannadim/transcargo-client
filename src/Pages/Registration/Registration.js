@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Registration = () => {
+  const { userSignUp } = useContext(AuthContext);
+  const handelRegistration = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photo = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    userSignUp(email, password)
+      .then((result) => {
+        const user = result.user;
+        user.uid && toast.success("Registration Successfull");
+        form.reset();
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+    console.log(name, photo, email, password);
+  };
   return (
     <section className="bg-dark py-5  login">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-5 col-md-8">
-            <Form className="bg-light p-4 rounded-3">
+            <Form
+              onSubmit={handelRegistration}
+              className="bg-light p-4 rounded-3"
+            >
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Full Name</Form.Label>
                 <Form.Control
