@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import toast from "react-hot-toast";
@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 
 const Registration = () => {
-  const { userSignUp } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const { userSignUp, updateUser } = useContext(AuthContext);
   const handelRegistration = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -17,11 +18,20 @@ const Registration = () => {
     userSignUp(email, password)
       .then((result) => {
         const user = result.user;
-        user.uid && toast.success("Registration Successfull");
-        form.reset();
+        const profile = { displayName: name, photoURL: photo };
+        updateUser(profile)
+          .then(() => {
+            user.uid && toast.success("Registration Successfull");
+            form.reset();
+          })
+          .catch(() => {});
+
         console.log(user);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
     console.log(name, photo, email, password);
   };
   return (
@@ -33,6 +43,7 @@ const Registration = () => {
               onSubmit={handelRegistration}
               className="bg-light p-4 rounded-3"
             >
+              <Form.Text className="text-danger">{error && error}</Form.Text>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Full Name</Form.Label>
                 <Form.Control
@@ -41,9 +52,6 @@ const Registration = () => {
                   type="text"
                   placeholder="Enter Name"
                 />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Photo URL</Form.Label>

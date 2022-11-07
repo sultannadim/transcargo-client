@@ -5,9 +5,16 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { AuthContext } from "../context/AuthProvider";
+import toast from "react-hot-toast";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handelLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch(() => {});
+    toast.error("Log Out Successfull");
+  };
   return (
     <Navbar bg="dark" expand="lg" className="border-bottom">
       <Container>
@@ -21,37 +28,48 @@ const Header = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto d-lg-flex align-items-center">
-            <Link
-              className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
-              to="/"
-            >
-              My Reviews
-            </Link>
-            <Link
-              className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
-              to="/"
-            >
-              Add Service
-            </Link>
-            <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
-              {user.name}
-            </Link>
-            <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
-              Log Out
-            </Link>
-            <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
-              <img
-                src="https://static.toiimg.com/photo/msid-89908674/89908674.jpg"
-                alt="profile"
-                className="profile"
-              />
-            </Link>
-            <Link
-              className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
-              to="/login"
-            >
-              Login
-            </Link>
+            {user?.uid ? (
+              <>
+                <Link
+                  className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
+                  to="/"
+                >
+                  My Reviews
+                </Link>
+                <Link
+                  className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
+                  to="/"
+                >
+                  Add Service
+                </Link>
+
+                <Link
+                  onClick={handelLogOut}
+                  className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
+                >
+                  Log Out
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </>
+            )}
+            {user?.displayName && (
+              <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
+                {user?.displayName}
+              </Link>
+            )}
+            {user?.photoURL && (
+              <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
+                <img src={user?.photoURL} alt="profile" className="profile" />
+              </Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
