@@ -20,7 +20,7 @@ const ServiceDetails = () => {
         setReviews(data);
       });
   }, [service?._id]);
-  console.log(reviews);
+
   return (
     <section className="bg-dark py-5 ">
       <div className="container">
@@ -37,7 +37,11 @@ const ServiceDetails = () => {
             </div>
           </div>
           {user?.email ? (
-            <AddReview service={service}></AddReview>
+            <AddReview
+              service={service}
+              reviews={reviews}
+              setReviews={setReviews}
+            ></AddReview>
           ) : (
             <h3 className="text-light mb-4">
               <b>

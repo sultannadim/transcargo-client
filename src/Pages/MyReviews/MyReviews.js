@@ -39,13 +39,19 @@ const MyReviews = () => {
     <section className="bg-dark py-5">
       <div className="container">
         <div className="row">
-          {myReviews.map((myReview) => (
-            <ReviewTable
-              key={myReview._id}
-              myReview={myReview}
-              handelDelete={handelDelete}
-            ></ReviewTable>
-          ))}
+          {myReviews.length <= 0 ? (
+            <div className="col-lg-12 no-review">
+              <h1 className="text-light fw-bold">No reviews were added</h1>
+            </div>
+          ) : (
+            myReviews.map((myReview) => (
+              <ReviewTable
+                key={myReview._id}
+                myReview={myReview}
+                handelDelete={handelDelete}
+              ></ReviewTable>
+            ))
+          )}
         </div>
       </div>
     </section>

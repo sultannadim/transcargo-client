@@ -33,6 +33,9 @@
   height: 250px;
   object-fit: cover;
 }
+.no-review{
+  min-height: 70vh;
+}
 
 
 /*Extra small devices (portrait phones, less than 576px)*/

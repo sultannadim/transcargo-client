@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 
-const AddReview = ({ service }) => {
+const AddReview = ({ service, reviews, setReviews }) => {
   const { user } = useContext(AuthContext);
 
   const handelReview = (event) => {
@@ -30,6 +30,8 @@ const AddReview = ({ service }) => {
         }
       });
     form.reset();
+    const newReview = [userReview, ...reviews];
+    setReviews(newReview);
   };
 
   return (

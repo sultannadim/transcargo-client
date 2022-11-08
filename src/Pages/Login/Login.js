@@ -25,13 +25,12 @@ const Login = () => {
         user?.uid && toast.success("Login Successfull");
         form.reset();
 
-        console.log(user);
+        navaigation(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
       });
-    navaigation(from, { replace: true });
   };
   //   google login
   const handelGooleLogin = () => {
