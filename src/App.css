@@ -29,6 +29,10 @@
   align-items: center;
   justify-content: center;
 }
+.card-img{
+  height: 250px;
+  object-fit: cover;
+}
 
 
 /*Extra small devices (portrait phones, less than 576px)*/
