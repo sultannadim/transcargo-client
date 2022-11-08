@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import AddReview from "./AddReview";
+import ShowReview from "./ShowReview";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
@@ -10,6 +11,16 @@ const ServiceDetails = () => {
   useTitle("Product Details");
   const service = useLoaderData();
   const { title, photo, price, details } = service;
+
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews?productId=${service?._id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
+      });
+  }, [service?._id]);
+  console.log(reviews);
   return (
     <section className="bg-dark py-5 ">
       <div className="container">
@@ -34,6 +45,13 @@ const ServiceDetails = () => {
               </b>
             </h3>
           )}
+
+          <div className="mt-3 border-top">
+            <h2 className="text-light mt-4">All Reviews</h2>
+            {reviews.map((review) => (
+              <ShowReview key={review._id} review={review}></ShowReview>
+            ))}
+          </div>
         </div>
       </div>
     </section>

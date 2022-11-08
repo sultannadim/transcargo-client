@@ -52,6 +52,7 @@ const AddReview = ({ service }) => {
             name="review"
             required
             as="textarea"
+            placeholder="Write Your Review"
             style={{ height: "150px" }}
           />
         </Form.Group>
