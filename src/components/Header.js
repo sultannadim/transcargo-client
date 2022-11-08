@@ -44,7 +44,7 @@ const Header = () => {
               <>
                 <Link
                   className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4"
-                  to="/"
+                  to="/my-reviews"
                 >
                   My Reviews
                 </Link>

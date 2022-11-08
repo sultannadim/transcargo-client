@@ -6,6 +6,7 @@ import HomeService from "../Home/HomeService";
 const Services = () => {
   useTitle("Services");
   const services = useLoaderData();
+
   return (
     <section className="bg-dark py-5">
       <div className="container">

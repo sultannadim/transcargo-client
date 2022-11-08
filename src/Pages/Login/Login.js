@@ -39,6 +39,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         user?.uid && toast.success("Login Successfull");
+        navaigation(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
