@@ -28,24 +28,36 @@ const Header = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto d-lg-flex align-items-center">
+            <Link
+              className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4"
+              to="/"
+            >
+              Services
+            </Link>
+            <Link
+              className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4"
+              to="/"
+            >
+              Blog
+            </Link>
             {user?.uid ? (
               <>
                 <Link
-                  className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
+                  className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4"
                   to="/"
                 >
                   My Reviews
                 </Link>
                 <Link
-                  className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
-                  to="/"
+                  className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4"
+                  to="/add-services"
                 >
                   Add Service
                 </Link>
 
                 <Link
                   onClick={handelLogOut}
-                  className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
+                  className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4"
                 >
                   Log Out
                 </Link>
@@ -53,20 +65,21 @@ const Header = () => {
             ) : (
               <>
                 <Link
-                  className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4"
+                  className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4"
                   to="/login"
                 >
                   Login
                 </Link>
               </>
             )}
+
             {user?.displayName && (
-              <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
+              <Link className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4">
                 {user?.displayName}
               </Link>
             )}
             {user?.photoURL && (
-              <Link className="text-decoration-none fw-bold text-light mt-lg-0 mt-3 ms-lg-4">
+              <Link className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4">
                 <img src={user?.photoURL} alt="profile" className="profile" />
               </Link>
             )}
