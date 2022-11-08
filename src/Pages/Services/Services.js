@@ -1,8 +1,10 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 import HomeService from "../Home/HomeService";
 
 const Services = () => {
+  useTitle("Services");
   const services = useLoaderData();
   return (
     <section className="bg-dark py-5">

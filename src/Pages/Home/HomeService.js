@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 const HomeService = ({ service }) => {
-  const { photo, title, price, details } = service;
+  const { photo, title, price, details, _id } = service;
   return (
     <div className="col-lg-4 col-md-6 mb-lg-0 mt-4">
       <Card>
@@ -16,7 +17,9 @@ const HomeService = ({ service }) => {
           <p className="mb-3">
             <b>Price : ${price}</b>
           </p>
-          <Button variant="primary">View Details</Button>
+          <Link to={`/services/${_id}`}>
+            <Button variant="primary">View Details</Button>
+          </Link>
         </Card.Body>
       </Card>
     </div>
