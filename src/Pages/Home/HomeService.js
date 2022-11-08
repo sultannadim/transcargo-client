@@ -5,14 +5,17 @@ import Card from "react-bootstrap/Card";
 const HomeService = ({ service }) => {
   const { photo, title, price, details } = service;
   return (
-    <div className="col-lg-4">
+    <div className="col-lg-4 col-md-6 mb-lg-0 mt-4">
       <Card>
         <Card.Img variant="top" className="card-img" src={photo} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>
-            {details?.length >= 100 ? details.slice(0, 100) + "..." : details}
+            {details?.length >= 100 ? details.slice(0, 90) + "..." : details}
           </Card.Text>
+          <p className="mb-3">
+            <b>Price : ${price}</b>
+          </p>
           <Button variant="primary">View Details</Button>
         </Card.Body>
       </Card>

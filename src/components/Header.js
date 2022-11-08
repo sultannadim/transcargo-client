@@ -30,7 +30,7 @@ const Header = () => {
           <Nav className="ms-auto d-lg-flex align-items-center">
             <Link
               className="text-decoration-none fw-semibold text-light mt-lg-0 mt-3 ms-lg-4"
-              to="/"
+              to="/services"
             >
               Services
             </Link>
