@@ -2,11 +2,14 @@ import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
+  const navaigation = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   useTitle("Login");
   const { userLogin, googleLogin } = useContext(AuthContext);
   const [error, setError] = useState("");
@@ -21,12 +24,14 @@ const Login = () => {
         const user = result.user;
         user?.uid && toast.success("Login Successfull");
         form.reset();
+
         console.log(user);
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
       });
+    navaigation(from, { replace: true });
   };
   //   google login
   const handelGooleLogin = () => {

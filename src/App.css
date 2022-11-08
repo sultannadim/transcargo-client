@@ -24,6 +24,11 @@
   text-transform: capitalize;
 
 }
+.loader-spinner{
+  min-height: 85vh;
+  align-items: center;
+  justify-content: center;
+}
 
 
 /*Extra small devices (portrait phones, less than 576px)*/
