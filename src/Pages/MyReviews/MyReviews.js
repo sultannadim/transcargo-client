@@ -5,11 +5,22 @@ import useTitle from "../../hooks/useTitle";
 import ReviewTable from "./ReviewTable";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        autorization: `Bearear ${localStorage.getItem("cargo-token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("cargo-token");
+          toast.error(`something wrong. error ${res.status}`);
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => setMyReviews(data));
   }, [user?.email]);
   useTitle("My Reviews");

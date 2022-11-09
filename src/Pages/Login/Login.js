@@ -23,7 +23,24 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         user?.uid && toast.success("Login Successfull");
+        const currentUser = { email: user.email };
+        console.log(currentUser);
         form.reset();
+
+        // jwt token start
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("cargo-token", data.token);
+          });
+        // jwt token end
 
         navaigation(from, { replace: true });
       })
