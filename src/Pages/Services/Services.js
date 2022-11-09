@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import Loader from "../../components/Loader";
+import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import HomeService from "../Home/HomeService";
 
 const Services = () => {
+  const { loading } = useContext(AuthContext);
   useTitle("Services");
   const services = useLoaderData();
+  console.log(services.length);
+
+  if (loading) {
+    return <Loader></Loader>;
+  }
 
   return (
     <section className="bg-dark py-5">

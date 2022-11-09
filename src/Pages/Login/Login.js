@@ -3,16 +3,19 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
-  const navaigation = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   useTitle("Login");
-  const { userLogin, googleLogin } = useContext(AuthContext);
+
+  const { userLogin, googleLogin, loading } = useContext(AuthContext);
   const [error, setError] = useState("");
+
   const handelLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -24,7 +27,7 @@ const Login = () => {
         const user = result.user;
         user?.uid && toast.success("Login Successfull");
         const currentUser = { email: user.email };
-        console.log(currentUser);
+
         form.reset();
 
         // jwt token start
@@ -42,26 +45,47 @@ const Login = () => {
           });
         // jwt token end
 
-        navaigation(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
       });
   };
+
   //   google login
   const handelGooleLogin = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
         user?.uid && toast.success("Login Successfull");
-        navaigation(from, { replace: true });
+        const currentUser = { email: user.email };
+        // jwt token start
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("cargo-token", data.token);
+          });
+        // jwt token end
+
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
       });
   };
+
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
     <section className="bg-dark py-5  login">
       <div className="container">

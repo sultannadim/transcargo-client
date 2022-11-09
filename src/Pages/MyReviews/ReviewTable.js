@@ -39,7 +39,7 @@ const ReviewTable = ({ myReview, handelDelete }) => {
       });
   };
   return (
-    <div className="col-lg-12 mb-3">
+    <div className="col-lg-12 mb-3 ">
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{reviesService.title} Review</Modal.Title>

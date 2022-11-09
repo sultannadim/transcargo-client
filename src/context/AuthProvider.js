@@ -19,19 +19,24 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const userSignUp = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const updateUser = (profile) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, profile);
   };
   const userLogin = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const googleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProveder);
   };
 
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 

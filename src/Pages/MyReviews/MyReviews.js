@@ -49,9 +49,9 @@ const MyReviews = () => {
   return (
     <section className="bg-dark py-5">
       <div className="container">
-        <div className="row">
+        <div className="row no-review">
           {myReviews.length <= 0 ? (
-            <div className="col-lg-12 no-review">
+            <div className="col-lg-12 no-review d-flex align-items-center justify-content-center">
               <h1 className="text-light fw-bold">No reviews were added</h1>
             </div>
           ) : (

@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
@@ -10,7 +11,7 @@ const Registration = () => {
   const navigate = useNavigate();
   useTitle("Registration");
   const [error, setError] = useState("");
-  const { userSignUp, updateUser } = useContext(AuthContext);
+  const { userSignUp, updateUser, loading } = useContext(AuthContext);
   const handelRegistration = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -37,6 +38,9 @@ const Registration = () => {
       });
     console.log(name, photo, email, password);
   };
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
     <section className="bg-dark py-5  login">
       <div className="container">
