@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/service-limit"),
+        loader: () => fetch("https://b6a11-service-review-server-side-sultannadim.vercel.app/service-limit"),
       },
       {
         path: "login",
@@ -43,13 +43,13 @@ export const router = createBrowserRouter([
       {
         path: "services",
         element: <Services></Services>,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () => fetch("https://b6a11-service-review-server-side-sultannadim.vercel.app/services"),
       },
       {
         path: "services/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(`https://b6a11-service-review-server-side-sultannadim.vercel.app/services/${params.id}`),
       },
       {
         path: "my-reviews",

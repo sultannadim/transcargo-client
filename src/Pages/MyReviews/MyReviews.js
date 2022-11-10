@@ -8,11 +8,14 @@ const MyReviews = () => {
   const { user, logOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        autorization: `Bearear ${localStorage.getItem("cargo-token")}`,
-      },
-    })
+    fetch(
+      `https://b6a11-service-review-server-side-sultannadim.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          autorization: `Bearear ${localStorage.getItem("cargo-token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           localStorage.removeItem("cargo-token");
@@ -30,9 +33,12 @@ const MyReviews = () => {
       "Are you sure you want to delete this review"
     );
     if (confirm) {
-      fetch(`http://localhost:5000/reviews/${review._id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://b6a11-service-review-server-side-sultannadim.vercel.app/reviews/${review._id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {

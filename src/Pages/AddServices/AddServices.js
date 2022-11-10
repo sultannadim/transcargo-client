@@ -14,13 +14,16 @@ const AddServices = () => {
     const price = form.price.value;
     const details = form.details.value;
     const service = { title, photo, price, details };
-    fetch("http://localhost:5000/services", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(service),
-    })
+    fetch(
+      "https://b6a11-service-review-server-side-sultannadim.vercel.app/services",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(service),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {

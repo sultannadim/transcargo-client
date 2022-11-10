@@ -14,7 +14,9 @@ const ReviewTable = ({ myReview, handelDelete }) => {
   // modal
   const [reviesService, setReviesService] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${myReview?.productId}`)
+    fetch(
+      `https://b6a11-service-review-server-side-sultannadim.vercel.app/services/${myReview?.productId}`
+    )
       .then((res) => res.json())
       .then((data) => setReviesService(data));
   }, []);
@@ -24,13 +26,16 @@ const ReviewTable = ({ myReview, handelDelete }) => {
     const form = event.target;
     const newReview = form.details.value;
     myReview.review = newReview;
-    fetch(`http://localhost:5000/reviews/${myReview._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(myReview),
-    })
+    fetch(
+      `https://b6a11-service-review-server-side-sultannadim.vercel.app/reviews/${myReview._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(myReview),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

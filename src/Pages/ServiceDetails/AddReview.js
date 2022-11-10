@@ -16,13 +16,16 @@ const AddReview = ({ service, reviews, setReviews }) => {
     const review = form.review.value;
     const productId = service?._id;
     const userReview = { name, photo, email, review, productId };
-    fetch("http://localhost:5000/reviews", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userReview),
-    })
+    fetch(
+      "https://b6a11-service-review-server-side-sultannadim.vercel.app/reviews",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userReview),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
