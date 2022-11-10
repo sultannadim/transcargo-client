@@ -11,7 +11,8 @@ const Registration = () => {
   const navigate = useNavigate();
   useTitle("Registration");
   const [error, setError] = useState("");
-  const { userSignUp, updateUser, loading } = useContext(AuthContext);
+  const { userSignUp, updateUser, loading, setLoading, logOut } =
+    useContext(AuthContext);
   const handelRegistration = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -25,22 +26,31 @@ const Registration = () => {
         const profile = { displayName: name, photoURL: photo };
         updateUser(profile)
           .then(() => {
-            user.uid && toast.success("Registration Successfull");
+            setError("");
+
+            user.uid &&
+              toast.success("Registration Successfull ! Please Login");
             form.reset();
           })
           .catch(() => {});
-        navigate("/");
-        console.log(user);
+
+        navigate("/login");
+        logOut();
+        setLoading(false);
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
       });
-    console.log(name, photo, email, password);
   };
+  if (error) {
+    setLoading(false);
+  }
+
   if (loading) {
     return <Loader></Loader>;
   }
+
   return (
     <section className="bg-dark py-5  login">
       <div className="container">

@@ -13,7 +13,9 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   useTitle("Login");
 
-  const { userLogin, googleLogin, loading } = useContext(AuthContext);
+  const { userLogin, googleLogin, loading, setLoading } =
+    useContext(AuthContext);
+
   const [error, setError] = useState("");
 
   const handelLogin = (event) => {
@@ -25,8 +27,11 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         const user = result.user;
+
         user?.uid && toast.success("Login Successfull");
         const currentUser = { email: user.email };
+        setError("");
+        setLoading(false);
 
         form.reset();
 
@@ -61,6 +66,8 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
+        setError("");
+        setLoading(false);
         user?.uid && toast.success("Login Successfull");
         const currentUser = { email: user.email };
         // jwt token start
@@ -89,9 +96,14 @@ const Login = () => {
       });
   };
 
+  if (error) {
+    setLoading(false);
+  }
+
   if (loading) {
     return <Loader></Loader>;
   }
+
   return (
     <section className="bg-dark py-5  login">
       <div className="container">
